@@ -8,10 +8,9 @@ const postSchema = mongoose.Schema({
         contentType:String
     },
     author:{
-        id:{
-           type:mongoose.Schema.Types.ObjectId,
-           ref:"User"
-        },
+           id:mongoose.Schema.Types.ObjectId,
+           name:String,
+           email:String
     },
     comments:[
         {

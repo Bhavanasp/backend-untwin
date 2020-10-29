@@ -13,7 +13,7 @@ router.get("/api/posts",function(req,res){
                 posts:posts
             });
         }
-    })
+    });
 });
 
 router.get('/api/posts/:id',(req,res)=>{
@@ -38,7 +38,9 @@ router.post("/api/posts",auth,upload.single('image'),(req,res)=>{
             contentType: req.file.contentType
         },
         author:{
-            id:req.user._id
+            id:req.user._id,
+            name:req.user.name,
+            email:req.user.email
         }
     };
     Post.create(data,(err,post)=>{
