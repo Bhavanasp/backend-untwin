@@ -24,7 +24,7 @@ router.post('/api/login', function(req,res){
     let token=req.cookies.auth;
     User.findByToken(token,(err,user)=>{
         if(err) return  res(err);
-        if(user) return res.status(400).json({
+        if(user) return res.json({
             error :true,
             message:"You are already logged in"
         });
@@ -38,11 +38,7 @@ router.post('/api/login', function(req,res){
         
                 user.generateToken((err,user)=>{
                     if(err) return res.status(400).send(err);
-                    res.cookie('auth',user.token).json({
-                        isAuth : true,
-                        id : user._id,
-                        email : user.email
-                    });
+                    res.cookie('auth',user.token).json({ isAuth : true,message : "logged in"});
                 });    
             });
           });
@@ -52,6 +48,7 @@ router.post('/api/login', function(req,res){
 
 router.get('/api/profile',auth,function(req,res){
     res.json({
+        'id':req.user._id,
         'name':req.user.name,
         'email':req.user.email
     });
