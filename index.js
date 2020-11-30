@@ -14,6 +14,8 @@ const dblink = require('./configs/config').get(process.env.NODE_ENV);
 const authRoutes = require('./routes/authroutes');
 const commentRoutes = require('./routes/commentroutes')
 const postRoutes = require('./routes/postroutes');
+const issueRoutes = require('./routes/IssueRoutes');
+const issueCommentRoutes = require('./routes/IssueCommentRoutes');
 const cors = require('cors');
 
 const app = express();
@@ -42,6 +44,8 @@ mongoose.connect(dblink.DATABASE,{useNewUrlParser:true,useUnifiedTopology:true},
 app.use(authRoutes);
 app.use(postRoutes);
 app.use(commentRoutes);
+app.use(issueRoutes);
+app.use(issueCommentRoutes);
 
 io.on("connection", (socket) => {
 
