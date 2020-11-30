@@ -14,6 +14,8 @@ const dblink = require('./configs/config').get(process.env.NODE_ENV);
 const authRoutes = require('./routes/authroutes');
 const commentRoutes = require('./routes/commentroutes')
 const postRoutes = require('./routes/postroutes');
+const issueRoutes = require('./routes/IssueRoutes');
+const issueCommentRoutes = require('./routes/IssueCommentRoutes');
 const cors = require('cors');
 
 const app = express();
@@ -28,7 +30,10 @@ app.use(router);
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(cors({credentials: true, origin: true}));
+app.use(cors({
+    origin:true,
+    credentials:true
+}));
 
 //DB connections
 mongoose.Promise = global.Promise;
@@ -42,6 +47,8 @@ mongoose.connect(dblink.DATABASE,{useNewUrlParser:true,useUnifiedTopology:true},
 app.use(authRoutes);
 app.use(postRoutes);
 app.use(commentRoutes);
+app.use(issueRoutes);
+app.use(issueCommentRoutes);
 
 io.on("connection", (socket) => {
 
