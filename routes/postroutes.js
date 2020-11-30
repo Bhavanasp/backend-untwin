@@ -35,7 +35,7 @@ router.post("/api/posts",auth,upload.single('image'),(req,res)=>{
         description:req.body.description,
         image:{
             data:req.file.buffer,
-            contentType: req.file.contentType
+            contentType: 'image/png'
         },
         author:{
             id:req.user._id,

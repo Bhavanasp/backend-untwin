@@ -17,7 +17,7 @@ router.get("/api/issues",function(req,res){
 });
 
 router.get('/api/issues/:id',(req,res)=>{
-    Issue.findById(req.params.id).populate("IssueComments").exec((err,issues)=>{
+    Issue.findById(req.params.id).populate("comments").exec((err,issues)=>{
         if(err){
             console.log(err)
         }else{
