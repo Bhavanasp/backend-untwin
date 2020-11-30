@@ -14,7 +14,7 @@ router.post('/api/posts/:id/comments',auth,upload.single('image'),(req,res)=>{
             var data = {
                 title:req.body.title,
                 description:req.body.description,
-                image:(req.file === null)?{
+                image:(req.file !== null)?{
                     data:req.file.buffer,
                     contentType: req.file.contentType
                 }:null,
