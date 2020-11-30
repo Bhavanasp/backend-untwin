@@ -28,7 +28,7 @@ app.use(router);
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(cors());
+app.use(cors({credentials: true, origin: true}));
 
 //DB connections
 mongoose.Promise = global.Promise;
