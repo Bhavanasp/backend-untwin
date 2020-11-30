@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router({mergeParams:true});
 const Issue = require('../models/Issue');
 const auth = require('../middlewares/auth');
-const IssueComment = require('../models/IssueComment');
+const IssueComment = require('../models/IssueComments');
 
 router.post('/api/posts/:id/issuecomments',auth,(req,res)=>{
     Issue.findById(req.params.id,(err,issue)=>{
